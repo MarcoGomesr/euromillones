@@ -11,32 +11,28 @@ export default function EuroMillonStatsTable({ result }: Props) {
   const { resultNumber, resultStarts } = useEuromillon(result)
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg py-10 flex justify-center items-start">
-      <table className=" text-sm text-left text-gray-500 ">
+    <div className="flex rounded-lg my-5 justify-center items-start relative overflow-x-auto">
+      <table className="w-1/2 text-sm text-left text-gray-500">
         <thead className="text-xs text-gray-700 uppercase bg-blue-300">
-          <tr>
-            <th scope="col" className="px-6 py-3">
+          <tr className="bg-blue-400">
+            <th scope="col" className="p-3 text-white">
               Numeros
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="p-3 text-white">
               Contador
-            </th>
-            <th scope="col" className="px-6 py-3">
-              porcentage
             </th>
           </tr>
         </thead>
-        <tbody>
-          {resultNumber.map(({ number, count, percentage }, index) => (
+        <tbody className="flex-1 sm:flex-none">
+          {resultNumber.map(({ number, count }, index) => (
             <tr className="bg-white border-b" key={index}>
               <th
                 scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                className="p-3 font-medium text-gray-900 whitespace-nowrap "
               >
                 {number}
               </th>
-              <td className="px-6 py-4">{count}</td>
-              <td className="px-6 py-4">{percentage}</td>
+              <td className="p-3">{count}</td>
             </tr>
           ))}
         </tbody>
@@ -44,14 +40,11 @@ export default function EuroMillonStatsTable({ result }: Props) {
       <table className=" text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-yellow-400 ">
           <tr>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="p-3 text-white">
               estrellas
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="p-3 text-white">
               Contador
-            </th>
-            <th scope="col" className="px-6 py-3">
-              porcentage
             </th>
           </tr>
         </thead>
@@ -60,12 +53,11 @@ export default function EuroMillonStatsTable({ result }: Props) {
             <tr className="bg-white border-b " key={index}>
               <th
                 scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                className="p-3 font-medium text-gray-900 whitespace-nowrap "
               >
                 {number}
               </th>
-              <td className="px-6 py-4">{count}</td>
-              <td className="px-6 py-4">{percentage}</td>
+              <td className="p-3">{count}</td>
             </tr>
           ))}
         </tbody>
