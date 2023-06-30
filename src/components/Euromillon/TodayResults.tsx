@@ -1,13 +1,14 @@
 import { type IEuromillon } from '../../../types.d'
 
 interface Props {
-  result: IEuromillon
+  result: IEuromillon[]
 }
 
 export default function TodayResults({ result }: Props) {
-  const lastNumber = () => [...result].pop() as IEuromillon
+  const lastNumber = [...result].pop()
+  // const lastNumber = (result: IEuromillon[]) => result[result.length - 1]
 
-  const dateString = lastNumber()?.date ?? ''
+  const dateString = lastNumber?.date ?? ''
   const date = new Date(dateString)
 
   const options = {
@@ -22,7 +23,7 @@ export default function TodayResults({ result }: Props) {
     <section className="pt-10">
       <span className="mt-4 block">{`Euromillones - ${formattedDate}`}</span>
       <ul className="grid grid-flow-col gap-4">
-        {lastNumber()?.numbers?.map((number, index) => (
+        {lastNumber?.numbers?.map((number, index) => (
           <li
             key={index + Number(number)}
             className="w-16 h-16 flex flex-row content-center font-bold justify-center items-center bg-blue-600 text-3xl rounded-full text-white"
@@ -30,7 +31,7 @@ export default function TodayResults({ result }: Props) {
             {number}
           </li>
         ))}
-        {lastNumber()?.stars?.map((number, index) => (
+        {lastNumber?.stars?.map((number, index) => (
           <li
             key={index + Number(number)}
             className="w-16 h-16 flex font-bold text-3xl justify-center items-center bg-yellow-500 text-white"

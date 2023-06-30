@@ -8,7 +8,9 @@
 //   return await fetch(url, options).then(async r => await r.json())
 // }
 
-export const getEuroMillionResults = async () => {
+import { type IEuromillon } from '../../types.d'
+
+export const getEuroMillionResults = async (): Promise<IEuromillon> => {
   // const API_EUROMILLON = process.env.NEXT_PUBLIC_API_EUROMILLON ?? ''
 
   const options = { method: 'GET', headers: { accept: 'application/json' } }

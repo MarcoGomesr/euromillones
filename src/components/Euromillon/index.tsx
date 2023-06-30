@@ -4,8 +4,12 @@ import TodayResults from './TodayResults'
 import EuroMillonStatsTable from './EuroMillonStatsTable'
 import RandomNumbers from './RandomNumbers'
 
-export default async function EuroMillon() {
-  const euromillonResults: IEuromillon = await getEuroMillionResults()
+interface Props {
+  result: IEuromillon[] // Make sure the result prop expects an array of IEuromillon objects
+}
+
+const EuroMillon: React.FC<Props> = async () => {
+  const euromillonResults = await getEuroMillionResults()
 
   return (
     <div>
@@ -14,16 +18,18 @@ export default async function EuroMillon() {
         Generador de números aleatorios basados en el promedio de los números
         ganadores
       </h2>
-      <TodayResults result={euromillonResults} />
+      <TodayResults result={[euromillonResults]} />
       <span className="mt-4 block">
         Numeros aleatorios ganadores del año 2023
       </span>
       <div className="">
-        <RandomNumbers result={euromillonResults} />
-        <RandomNumbers result={euromillonResults} />
-        <RandomNumbers result={euromillonResults} />
+        <RandomNumbers result={[euromillonResults]} />
+        <RandomNumbers result={[euromillonResults]} />
+        <RandomNumbers result={[euromillonResults]} />
       </div>
-      <EuroMillonStatsTable result={euromillonResults} />
+      <EuroMillonStatsTable result={[euromillonResults]} />
     </div>
   )
 }
+
+export default EuroMillon
