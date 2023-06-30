@@ -1,14 +1,10 @@
 import { getEuroMillionResults } from '@/services/EuroMillion'
-import { type IEuromillon } from '../../../types'
+
 import TodayResults from './TodayResults'
 import EuroMillonStatsTable from './EuroMillonStatsTable'
 import RandomNumbers from './RandomNumbers'
 
-interface Props {
-  result: IEuromillon[] // Make sure the result prop expects an array of IEuromillon objects
-}
-
-const EuroMillon: React.FC<Props> = async () => {
+const EuroMillon: React.FC = async () => {
   const euromillonResults = await getEuroMillionResults()
 
   return (
