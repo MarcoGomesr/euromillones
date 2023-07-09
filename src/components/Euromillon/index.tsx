@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+'use client'
 import { getEuroMillionResults } from '@/services/EuroMillion'
 
 import TodayResults from './TodayResults'
 import EuroMillonStatsTable from './EuroMillonStatsTable'
 import RandomNumbers from './RandomNumbers'
 
-const EuroMillon: React.FC = async () => {
-  const euromillonResults = await getEuroMillionResults()
+const EuroMillon: React.FC = () => {
+  const { euromillonResults, isLoading, isError } = getEuroMillionResults()
+
+  if (isError) return <div>failed to load</div>
+  if (isLoading) return <div>loading...</div>
 
   return (
     <>
