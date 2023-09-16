@@ -12,8 +12,8 @@
   width: 0;
   height: 0;
 
-  margin-left: 0.9em;
-  margin-right: 0.9em;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
   margin-bottom: 1.2em;
 
   border-right: 0.3em solid transparent;
@@ -21,7 +21,7 @@
   border-left: 0.3em solid transparent;
 
   /* Controlls the size of the stars. */
-  font-size: 30px;
+  font-size: 20px;
 
   &:before,
   &:after {
