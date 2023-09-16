@@ -8,6 +8,31 @@ interface Props {
 export default function RandomNumbers({ result }: Props) {
   const { resultNumber, resultStarts } = useEuromillon(result)
 
+  const checkResultNumber = (current: string, type = 'numbers') => {
+    const lastResult = result.at(-1)
+    if (type === 'numbers') {
+      if (lastResult?.numbers.includes(current) === true) {
+        return (
+          <>
+            {current}
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500 -top-4"></span>
+          </>
+        )
+      }
+    } else {
+      if (lastResult?.stars.includes(current) === true) {
+        return (
+          <>
+            {current}
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500 -top-4"></span>
+          </>
+        )
+      }
+    }
+
+    return current
+  }
+
   function pickRandomNumbers(
     array: Array<{
       number: string
@@ -46,16 +71,16 @@ export default function RandomNumbers({ result }: Props) {
             key={index}
             className="lg:w-16 lg:h-16 md:w-13 md:h-13 h-10 w-10 text-base flex sm:text-base flex-row content-center font-bold justify-center items-center bg-blue-600  rounded-full text-white"
           >
-            {selectedNumbers.number}
+            {checkResultNumber(selectedNumbers.number)}
           </li>
         ))}
         {pickRandomNumbers(resultStarts, 2).map(
           (selectedNumbersStart, index) => (
             <li
               key={index}
-              className="flex font-bold h-10 w-10 text-basejustify-center  bg-yellow-500 text-white items-center justify-center"
+              className="flex font-bold h-10 w-10 text-basejustify-center bg-yellow-500 text-white items-center justify-center"
             >
-              {selectedNumbersStart.number}
+              {checkResultNumber(selectedNumbersStart.number, 'stars')}
             </li>
           )
         )}

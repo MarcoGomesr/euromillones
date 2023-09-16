@@ -15,7 +15,7 @@ export default function EuroMillonStatsTable({ result }: Props) {
 
     if (lastResult.numbers.includes(currentNumber)) {
       return (
-        <span className="font-bold bg-blue-600  rounded-full text-white  h-3 w-3 inline p-1">
+        <span className="font-bold bg-blue-600 rounded-full text-white h-3 w-3 inline p-1">
           {currentNumber}
         </span>
       )
