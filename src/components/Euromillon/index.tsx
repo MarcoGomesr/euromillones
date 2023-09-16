@@ -23,6 +23,8 @@ const EuroMillon: React.FC = async () => {
         <RandomNumbers result={euromillonResults} />
         <RandomNumbers result={euromillonResults} />
         <RandomNumbers result={euromillonResults} />
+        <RandomNumbers result={euromillonResults} />
+        <RandomNumbers result={euromillonResults} />
       </div>
       <EuroMillonStatsTable result={euromillonResults} />
     </>
