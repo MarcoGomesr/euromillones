@@ -10,6 +10,18 @@ export default function EuroMillonStatsTable({ result }: Props) {
 
   const { resultNumber, resultStarts } = useEuromillon(result)
 
+  const checkNumberIsResult = (currentNumber: number) => {
+    const lastResult = result[result.length - 1]
+
+    if (lastResult.numbers.includes(currentNumber)) {
+      return (
+        <span className="font-bold bg-blue-600  rounded-full text-white  h-3 w-3 inline p-1">
+          {currentNumber}
+        </span>
+      )
+    }
+    return currentNumber
+  }
   return (
     <div className="flex rounded-lg my-5 justify-center items-start relative overflow-x-auto">
       <table className="w-1/2 text-sm text-left text-gray-500">
@@ -30,7 +42,7 @@ export default function EuroMillonStatsTable({ result }: Props) {
                 scope="row"
                 className="p-3 font-medium text-gray-900 whitespace-nowrap "
               >
-                {number}
+                {checkNumberIsResult(number)}
               </th>
               <td className="p-3">{count}</td>
             </tr>
