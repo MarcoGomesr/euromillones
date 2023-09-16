@@ -10,7 +10,7 @@ export default function EuroMillonStatsTable({ result }: Props) {
 
   const { resultNumber, resultStarts } = useEuromillon(result)
 
-  const checkNumberIsResult = (currentNumber: number) => {
+  const checkNumberIsResult = (currentNumber: string) => {
     const lastResult = result[result.length - 1]
 
     if (lastResult.numbers.includes(currentNumber)) {
