@@ -17,10 +17,10 @@ export default function RandomNumbers({ result }: Props) {
     end: number
   ) {
     const uniqueCounts = Array.from(new Set(array.map((item) => item.count)))
-    // Shuffle the unique counts array
-    const shuffledCounts = uniqueCounts.sort(() => Math.random() - 0.5)
 
-    // Pick the first 5 unique counts
+    // Shuffle the unique counts array
+    const filteredCounts = uniqueCounts.filter((number) => number >= 7)
+    const shuffledCounts = filteredCounts.sort(() => Math.random() - 0.5)
     const selectedCounts = shuffledCounts.slice(0, end)
 
     // Filter array elements with the selected counts
