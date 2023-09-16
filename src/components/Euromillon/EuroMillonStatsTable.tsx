@@ -1,5 +1,5 @@
 import useEuromillon from '@/hooks/useEuromillon'
-import { type IEuromillon } from '../../../types.d'
+import { type IEuromillon } from '../../types'
 
 interface Props {
   result: IEuromillon[]

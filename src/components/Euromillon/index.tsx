@@ -1,6 +1,6 @@
 import { getEuroMillionResults } from '@/services/EuroMillion'
 
-import TodayResults from './TodayResults'
+import TodayResults from '../TodayResults'
 import EuroMillonStatsTable from './EuroMillonStatsTable'
 import RandomNumbers from './RandomNumbers'
 
