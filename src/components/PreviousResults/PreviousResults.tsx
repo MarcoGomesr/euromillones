@@ -5,10 +5,9 @@ interface Props {
   result: IEuromillon[]
 }
 
-export default function TodayResults({ result }: Props) {
+export default function PreviousResults({ result }: Props) {
   const resultArray = result.flat()
   const lastNumber = resultArray.pop()
-  // const lastNumber = (result: IEuromillon[]) => result[result.length - 1]
 
   const dateString = lastNumber?.date ?? ''
   const date = new Date(dateString)
@@ -35,11 +34,8 @@ export default function TodayResults({ result }: Props) {
           </li>
         ))}
         {lastNumber?.stars?.map((number, index) => (
-          <li
-            key={index + Number(number)}
-            className="flex font-bold h-10 w-10 text-basejustify-center bg-yellow-500 text-white items-center justify-center"
-          >
-            <span>{number}</span>
+          <li key={index + Number(number)} className={styles.star}>
+            <span className={styles.number}>{number}</span>
           </li>
         ))}
       </ul>

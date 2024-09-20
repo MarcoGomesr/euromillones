@@ -7,7 +7,6 @@ interface Props {
 
 export default function RandomNumbers({ result }: Props) {
   const { resultNumber, resultStarts } = useEuromillon(result)
-
   const checkResultNumber = (current: string, type = 'numbers') => {
     const lastResult = result.at(-1)
     if (type === 'numbers') {
@@ -59,7 +58,6 @@ export default function RandomNumbers({ result }: Props) {
       }
     }
     selectedNumbers.sort((a, b) => Number(a.number) - Number(b.number))
-
     return selectedNumbers
   }
 

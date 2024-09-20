@@ -5,7 +5,8 @@ export const getEuroMillionResults = async () => {
     next: { revalidate: 60 }
   }
 
-  const API_URL = 'https://euromillions.api.pedromealha.dev/draws?year=2023'
+  const currentYear = new Date().getFullYear()
+  const API_URL = `https://euromillions.api.pedromealha.dev/draws?year=${currentYear}`
   const res = await fetch(API_URL, options)
 
   if (!res.ok) return []

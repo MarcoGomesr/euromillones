@@ -36,15 +36,13 @@ export default function useEuromillon(result: IEuromillon[]) {
 
   const resultNumber = Object.entries(numberCounts).map(([number, count]) => ({
     number,
-    count,
-    percentage: ((count / totalCount) * 100).toFixed(2) + '%'
+    count
   }))
 
   const resultStarts = Object.entries(numberStarsCounts).map(
     ([number, count]) => ({
       number,
-      count,
-      percentage: ((count / totalCount) * 100).toFixed(2) + '%'
+      count
     })
   )
 

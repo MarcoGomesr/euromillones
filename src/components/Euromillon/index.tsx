@@ -2,7 +2,8 @@ import { getEuroMillionResults } from '@/services/EuroMillion'
 
 import TodayResults from '../TodayResults'
 import EuroMillonStatsTable from './EuroMillonStatsTable'
-import RandomNumbers from './RandomNumbers'
+import PreviousFiveNumbers from './PreviousFiveNumbers'
+import ProbabilityComponent from './ProbabilityComponent'
 
 const EuroMillon: React.FC = async () => {
   const euromillonResults = await getEuroMillionResults()
@@ -14,18 +15,21 @@ const EuroMillon: React.FC = async () => {
         Generador de números aleatorios basados en el promedio de los números
         ganadores
       </h2>
-      <TodayResults result={euromillonResults} />
+
       <span className="my-4 block  text-center ">
         Numeros aleatorios generados a partir el promedio del numeros ganadores
         del año 2023
       </span>
-      <div className="mt-4">
-        <RandomNumbers result={euromillonResults} />
-        <RandomNumbers result={euromillonResults} />
-        <RandomNumbers result={euromillonResults} />
-        <RandomNumbers result={euromillonResults} />
-        <RandomNumbers result={euromillonResults} />
-      </div>
+      {/* <RandomNumbers result={euromillonResults} /> */}
+      <ProbabilityComponent result={euromillonResults} />
+      <ProbabilityComponent result={euromillonResults} />
+      <ProbabilityComponent result={euromillonResults} />
+      <ProbabilityComponent result={euromillonResults} />
+      <ProbabilityComponent result={euromillonResults} />
+      <TodayResults result={euromillonResults} />
+      <h3 className="text-center">Resultados anteriores</h3>
+
+      <PreviousFiveNumbers euromillonResults={euromillonResults} />
       <EuroMillonStatsTable result={euromillonResults} />
     </>
   )
