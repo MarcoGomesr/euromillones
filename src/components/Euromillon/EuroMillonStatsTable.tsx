@@ -61,7 +61,7 @@ export default function EuroMillonStatsTable({ result }: Props) {
           </tr>
         </thead>
         <tbody>
-          {resultStarts.map(({ number, count, percentage }, index) => (
+          {resultStarts.map(({ number, count }, index) => (
             <tr className="bg-white border-b " key={index}>
               <th
                 scope="row"
