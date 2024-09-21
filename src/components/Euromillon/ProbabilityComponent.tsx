@@ -1,31 +1,13 @@
+import { type IEuromillon } from '@/types'
 import React from 'react'
 
-const analyzePatterns = (data) => {
-  const frequency = {}
-
-  data.forEach((arr) => {
-    const key = arr.join(',')
-    frequency[key] = (frequency[key] || 0) + 1
-  })
-
-  const probabilities = Object.entries(frequency)
-    .map(([combination, count]) => ({
-      combination,
-      probability: (count / data.length) * 100 // percentage
-    }))
-    .sort((a, b) => b.probability - a.probability) // Sort by probability descending
-
-  return probabilities.slice(0, 5) // Return top 5
-}
-
-// The function to predict stars based on probabilities
-function predictStarsFromData(result) {
+function predictStarsFromData(result: IEuromillon[]) {
   // Step 1: Extract all stars from result
   const starsData = result.map((item) => item.stars).flat()
 
   // Step 2: Count occurrences of each star
-  const starCount = starsData.reduce((acc, star) => {
-    acc[star] = (acc[star] || 0) + 1
+  const starCount = starsData.reduce<Record<string, number>>((acc, star) => {
+    acc[star] = (typeof acc[star] === 'number' ? acc[star] : 0) + 1
     return acc
   }, {})
 
@@ -40,7 +22,7 @@ function predictStarsFromData(result) {
   // Step 4: Select two stars based on probabilities
   function getRandomStar(probabilities) {
     const random = Math.random()
-    let cumulativeProbability = 0
+    let cumulativeProbability: number = 0
 
     for (const { star, probability } of probabilities) {
       cumulativeProbability += probability
@@ -61,20 +43,20 @@ function predictStarsFromData(result) {
   return Array.from(selectedStars)
 }
 
-const ProbabilityComponent = ({ result }) => {
+const ProbabilityComponent = ({ result }: Props) => {
   const transformedData = result.map((item) => item.numbers)
 
   // console.log(transformedData)
 
-  const frequencyMap = {}
+  const frequencyMap: Record<string, number> = {}
 
   // Count the frequency of each number
   transformedData.forEach((draw) => {
-    draw.forEach((number) => {
-      if (frequencyMap[number]) {
-        frequencyMap[number]++
+    draw.forEach((number: string) => {
+      if (frequencyMap[number] !== undefined) {
+        frequencyMap[number]++ // Increment if the number already exists in the map
       } else {
-        frequencyMap[number] = 1
+        frequencyMap[number] = 1 // Initialize to 1 if the number doesn't exist yet
       }
     })
   })

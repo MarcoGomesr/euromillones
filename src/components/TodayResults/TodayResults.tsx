@@ -1,5 +1,4 @@
 import { type IEuromillon } from '@/types.d'
-import styles from './styles/TodayResults.module.scss'
 
 interface Props {
   result: IEuromillon[]

@@ -1,6 +1,11 @@
+import { type IEuromillon } from '@/types'
 import React from 'react'
 
-const PreviousFiveNumbers = ({ euromillonResults }) => {
+const PreviousFiveNumbers = ({
+  euromillonResults
+}: {
+  euromillonResults: IEuromillon[]
+}) => {
   const previousNumbers = euromillonResults.slice(-5)
 
   const previousNumbersOnly = previousNumbers.map((item) => ({

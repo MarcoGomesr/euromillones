@@ -31,9 +31,6 @@ export default function useEuromillon(result: IEuromillon[]) {
     }
   }
 
-  // // Calculate the percentage of each number
-  const totalCount = result.length
-
   const resultNumber = Object.entries(numberCounts).map(([number, count]) => ({
     number,
     count
