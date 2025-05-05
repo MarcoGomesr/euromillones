@@ -20,7 +20,7 @@ function predictStarsFromData(result: IEuromillon[]) {
   }))
 
   // Step 4: Select two stars based on probabilities
-  function getRandomStar(probabilities) {
+  function getRandomStar(probabilities: Array<{ star: string, probability: number }>) {
     const random = Math.random()
     let cumulativeProbability: number = 0
 
@@ -43,21 +43,15 @@ function predictStarsFromData(result: IEuromillon[]) {
   return Array.from(selectedStars)
 }
 
-const ProbabilityComponent = ({ result }: Props) => {
+const ProbabilityComponent = ({ result }: { result: IEuromillon[] }) => {
   const transformedData = result.map((item) => item.numbers)
-
-  // console.log(transformedData)
 
   const frequencyMap: Record<string, number> = {}
 
   // Count the frequency of each number
   transformedData.forEach((draw) => {
     draw.forEach((number: string) => {
-      if (frequencyMap[number] !== undefined) {
-        frequencyMap[number]++ // Increment if the number already exists in the map
-      } else {
-        frequencyMap[number] = 1 // Initialize to 1 if the number doesn't exist yet
-      }
+      frequencyMap[number] = (frequencyMap[number] ?? 0) + 1
     })
   })
 

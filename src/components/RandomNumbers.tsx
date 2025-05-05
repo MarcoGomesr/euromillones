@@ -1,11 +1,7 @@
 import useEuromillon from '@/hooks/useEuromillon'
-import { type IEuromillon } from '../../types'
+import { type IEuromillon } from '../types'
 
-interface Props {
-  result: IEuromillon[]
-}
-
-export default function RandomNumbers({ result }: Props) {
+export default function RandomNumbers({ result }: { result: IEuromillon[] }) {
   const { resultNumber, resultStarts } = useEuromillon(result)
   const checkResultNumber = (current: string, type = 'numbers') => {
     const lastResult = result.at(-1)
