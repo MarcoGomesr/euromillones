@@ -1,5 +1,5 @@
-import EuroMillonStatsTable from '@/components/EuroMillonStatsTable'
-import PreviousFiveNumbers from '@/components/PreviousFiveNumbers'
+// import EuroMillonStatsTable from '@/components/EuroMillonStatsTable'
+// import PreviousFiveNumbers from '@/components/PreviousFiveNumbers'
 import ProbabilityComponent from '@/components/ProbabilityComponent'
 import TodayResults from '@/components/TodayResults'
 import { getEuroMillionResults } from '@/services/EuroMillion'
@@ -25,8 +25,8 @@ export default async function HomePage() {
       <TodayResults result={euromillonResults} />
       <h3 className="text-center">Resultados anteriores</h3>
 
-      <PreviousFiveNumbers euromillonResults={euromillonResults} />
-      <EuroMillonStatsTable result={euromillonResults} />
+      {/* <PreviousFiveNumbers euromillonResults={euromillonResul§ts} /> */}
+      {/* <EuroMillonStatsTable result={euromillonResults} /> */}
     </main>
   )
 }
