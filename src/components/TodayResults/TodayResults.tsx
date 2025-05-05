@@ -1,25 +1,11 @@
 import { type IEuromillon } from '@/types.d'
+import { formatDate } from '@/lib/formatDate'
 
-interface Props {
-  result: IEuromillon[]
-}
-
-export default function TodayResults({ result }: Props) {
+export default function TodayResults({ result }: { result: IEuromillon[] }) {
   const resultArray = result.flat()
-  const lastNumber = resultArray.pop()
-  // const lastNumber = (result: IEuromillon[]) => result[result.length - 1]
+  const lastNumber = resultArray.pop() as IEuromillon
 
-  const dateString = lastNumber?.date ?? ''
-  const date = new Date(dateString)
-
-  const options = {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  } as const
-
-  const formattedDate = date.toLocaleDateString('es-ES', options)
+  const formattedDate = formatDate(lastNumber)
 
   return (
     <section className="pt-10">

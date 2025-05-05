@@ -16,11 +16,9 @@ const EuroMillon: React.FC = async () => {
         ganadores
       </h2>
 
-      <span className="my-4 block  text-center ">
+      <span className="my-4 block text-center">
         Numeros aleatorios generados a partir el promedio del numeros ganadores
-        del año 2023
       </span>
-      {/* <RandomNumbers result={euromillonResults} /> */}
       <ProbabilityComponent result={euromillonResults} />
       <ProbabilityComponent result={euromillonResults} />
       <ProbabilityComponent result={euromillonResults} />
