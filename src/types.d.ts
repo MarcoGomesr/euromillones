@@ -7,3 +7,8 @@ export interface IEuromillon {
   prize: number
   stars: string[]
 }
+
+export type Prediction = {
+  numbers: string[]
+  stars: string[]
+}
