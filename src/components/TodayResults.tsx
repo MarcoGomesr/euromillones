@@ -10,7 +10,7 @@ export default function TodayResults({ result }: { result: IEuromillon[] }) {
   return (
     <section className="pt-10">
       <span className="mb-4 block  text-center">{`Euromillones - ${formattedDate}`}</span>
-      <ul className="grid grid-flow-col gap-4 md:gap-2 items-center justify-center align-middle ">
+      <ul className="grid grid-flow-col gap-4 md:gap-2 items-center justify-center align-middle">
         {lastNumber?.numbers?.map((number, index) => (
           <li
             key={index + Number(number)}
