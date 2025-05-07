@@ -1,11 +1,15 @@
-// import EuroMillonStatsTable from '@/components/EuroMillonStatsTable'
-// import PreviousFiveNumbers from '@/components/PreviousFiveNumbers'
-import ProbabilityComponent from '@/components/ProbabilityComponent'
+import usePredictions from '@/hooks/usePredictions'
 import TodayResults from '@/components/TodayResults'
+import GenerateNumbers from '@/components/GenerateNumbers'
+import EuroMillonStatsTable from '@/components/EuroMillonStatsTable'
+
 import { getEuroMillionResults } from '@/services/EuroMillion'
 
 export default async function HomePage() {
   const euromillonResults = await getEuroMillionResults()
+
+  const results = await usePredictions(euromillonResults, 5)
+
   return (
     <main className="min-h-screen container mx-auto">
       <h1 className="font-bold text-center text-6xl  mt-10">Euromillón</h1>
@@ -17,16 +21,13 @@ export default async function HomePage() {
       <span className="my-4 block text-center">
         Numeros aleatorios generados a partir el promedio del numeros ganadores
       </span>
-      <ProbabilityComponent result={euromillonResults} />
-      <ProbabilityComponent result={euromillonResults} />
-      <ProbabilityComponent result={euromillonResults} />
-      <ProbabilityComponent result={euromillonResults} />
-      <ProbabilityComponent result={euromillonResults} />
+      <GenerateNumbers results={results} />
+
       <TodayResults result={euromillonResults} />
       <h3 className="text-center">Resultados anteriores</h3>
 
-      {/* <PreviousFiveNumbers euromillonResults={euromillonResul§ts} /> */}
-      {/* <EuroMillonStatsTable result={euromillonResults} /> */}
+      {/* <PreviousFiveNumbers euromillonResults={euromillonResults} /> */}
+      <EuroMillonStatsTable result={euromillonResults} />
     </main>
   )
 }
