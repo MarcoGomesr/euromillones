@@ -6,10 +6,17 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
+}
+
+model ProbabilityCombination {
+  id          Int      @id @default(autoincrement())
+  date        DateTime @unique
+  predictions String // Store as JSON string: [{numbers: string[], stars: string[]}]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
