@@ -1,16 +1,18 @@
 'use client'
-
+import React from 'react'
 import { IEuromillon, Prediction } from '@/types'
+
+interface GenerateNumbersProps {
+  predictions: Prediction[]
+  isPrevious?: boolean
+  results?: IEuromillon[] | Prediction[]
+}
 
 export default function GenerateNumbers({
   predictions,
   isPrevious,
   results
-}: {
-  predictions: Prediction[]
-  isPrevious?: boolean
-  results?: IEuromillon[] | Prediction[]
-}) {
+}: GenerateNumbersProps): React.ReactElement | undefined {
   if (!results) {
     return (
       <div className="flex flex-col gap-4 justify-center items-center">
