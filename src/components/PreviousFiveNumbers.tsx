@@ -15,6 +15,7 @@ const PreviousFiveNumbers = ({
 
   return (
     <>
+      <h2 className="text-center mt-10">Resultados anteriores</h2>
       {previousNumbersOnly.map((item, index) => (
         <section key={index} className="mt-4">
           <ul className="grid grid-flow-col gap-4 md:gap-2 items-center justify-center align-middle">
