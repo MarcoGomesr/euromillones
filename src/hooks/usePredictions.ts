@@ -1,5 +1,6 @@
-import { prisma } from '@/lib/db'
 import { Prediction, type IEuromillon } from '@/types'
+import fs from 'fs/promises'
+import path from 'path'
 
 function predictStarsFromData(result: IEuromillon[]): string[] {
   // Step 1: Extract all stars from result
@@ -58,19 +59,34 @@ export default async function usePredictions(
       throw new Error('No results available to generate predictions')
     }
 
-    const dateId = new Date(lastResult.date).toISOString().split('T')[0] // Format: YYYY-MM-DD
+    // Format date as YYYY-MM-DD
+    const dateId = new Date(lastResult.date).toISOString().split('T')[0]
+    const dataDir = path.join(process.cwd(), 'src', 'shared', 'data')
+    const predictionsFile = path.join(dataDir, 'predictions.json')
+    console.log('Predictions file path:', predictionsFile)
 
-    // check if the prediction with the last date exist in the DB
-    const existingPrediction = await prisma.probabilityCombination.findUnique({
-      where: {
-        date: new Date(dateId)
-      }
-    })
-
-    // if exist return the prediction
-    if (existingPrediction) {
-      return JSON.parse(existingPrediction.predictions) as Prediction[]
+    // Check if predictions file exists and read existing data
+    let existingPredictions: Record<string, Prediction[]> = {}
+    try {
+      const fileContent = await fs.readFile(predictionsFile, 'utf-8')
+      existingPredictions = JSON.parse(fileContent)
+      console.log(
+        'Existing predictions dates:',
+        Object.keys(existingPredictions)
+      )
+    } catch (error) {
+      console.log(
+        'No existing predictions file or invalid JSON, starting fresh'
+      )
     }
+
+    // Check if prediction for this date already exists
+    if (existingPredictions[dateId]) {
+      console.log('Predictions already exist for date:', dateId)
+      return existingPredictions[dateId]
+    }
+
+    console.log('Generating new predictions for date:', dateId)
 
     // Generate predictions if they don't exist
     const frequencyMap: Record<string, number> = {}
@@ -113,12 +129,16 @@ export default async function usePredictions(
     }
 
     // Save the new predictions
-    await prisma.probabilityCombination.create({
-      data: {
-        date: new Date(dateId),
-        predictions: JSON.stringify(predictions)
-      }
-    })
+    existingPredictions[dateId] = predictions
+    try {
+      // Format the JSON with proper indentation
+      const formattedJson = JSON.stringify(existingPredictions, null, 2)
+      await fs.writeFile(predictionsFile, formattedJson)
+      console.log('Successfully saved new predictions for date:', dateId)
+    } catch (error) {
+      console.error('Error saving predictions:', error)
+      // Continue execution even if save fails
+    }
 
     return predictions
   } catch (error) {

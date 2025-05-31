@@ -1,4 +1,6 @@
-export const getEuroMillionResults = async () => {
+'use server'
+
+export async function getEuroMillionResults() {
   const currentYear = new Date().getFullYear()
   const API_URL = `https://euromillions.api.pedromealha.dev/draws?year=${currentYear}`
 
