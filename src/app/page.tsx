@@ -8,7 +8,8 @@ export default async function HomePage() {
   const euromillonResults = await getEuroMillionResults()
 
   const results = await usePredictions(euromillonResults, 5)
-  const { predictions } = await previousPredictionAction()
+  const previousPrediction = await previousPredictionAction()
+  const predictions = previousPrediction?.predictions ?? []
   return (
     <HomeView
       results={results}
