@@ -35,3 +35,5 @@ pnpm-lock.yaml
 *.tsbuildinfo
 next-env.d.ts
 .env
+
+./src/shared/data/predictions.json
