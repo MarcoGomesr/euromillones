@@ -1,6 +1,6 @@
-import { Prediction, type IEuromillon } from '@/types'
 import fs from 'fs/promises'
 import path from 'path'
+import { type IEuromillon, Prediction } from '@/types'
 
 function predictStarsFromData(result: IEuromillon[]): string[] {
   // Step 1: Extract all stars from result

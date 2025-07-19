@@ -1,4 +1,4 @@
-import { type IEuromillon } from '../types'
+import { type IEuromillon } from '../../types'
 
 export default function useEuromillon(result: IEuromillon[]) {
   const numberCounts: Record<string, number> = {}

@@ -15,17 +15,17 @@ export default function GenerateNumbers({
 }: GenerateNumbersProps): React.ReactElement | undefined {
   if (!results) {
     return (
-      <div className="flex flex-col gap-4 justify-center items-center">
+      <div className="flex flex-col justify-center items-center w-full px-2">
         {predictions?.map((prediction, predictionIndex) => (
           <div
             key={predictionIndex}
-            className="flex flex-row gap-2 justify-center items-center"
+            className="flex flex-row gap-2 justify-center items-center overflow-x-auto max-w-full"
           >
             {/* Numbers */}
             {prediction.numbers?.map((number, index) => (
               <li
                 key={index + Number(number)}
-                className="h-10 w-10 text-base flex sm:text-base flex-row content-center font-bold justify-center items-center bg-blue-600 rounded-full text-white"
+                className="h-8 w-8 text-base flex sm:text-base flex-row content-center font-bold justify-center items-center bg-blue-600 rounded-full text-white"
               >
                 {number}
               </li>
@@ -68,7 +68,7 @@ export default function GenerateNumbers({
 
   if (isPrevious && lastEuroMillionNumbers) {
     return (
-      <div className="flex flex-col gap-4 justify-center items-center">
+      <div className="flex flex-col gap-4 justify-center items-center w-full px-2">
         {predictions?.map((prediction, predictionIndex) => {
           const matchPercentage = calculateMatchPercentage(prediction)
 
@@ -82,7 +82,7 @@ export default function GenerateNumbers({
                 {prediction.numbers?.map((number, index) => (
                   <li
                     key={index + Number(number)}
-                    className={`h-10 w-10 text-base flex sm:text-base flex-row content-center font-bold justify-center items-center rounded-full text-white ${
+                    className={`h-8 w-8 text-base flex sm:text-base flex-row content-center font-bold justify-center items-center rounded-full text-white ${
                       lastEuroMillionNumbers.numbers.includes(number)
                         ? 'bg-green-600'
                         : 'bg-blue-600'
@@ -96,7 +96,7 @@ export default function GenerateNumbers({
                 {prediction.stars?.map((number, index) => (
                   <li
                     key={index + Number(number)}
-                    className={`star flex justify-center items-center w-16 h-16  ${
+                    className={`star flex justify-center items-center w-10 h-10  ${
                       lastEuroMillionNumbers.stars.includes(number)
                         ? 'bg-green-600'
                         : 'bg-yellow-500'

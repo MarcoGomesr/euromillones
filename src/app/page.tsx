@@ -1,6 +1,6 @@
-import usePredictions from '@/hooks/usePredictions'
+import usePredictions from '@/shared/hooks/usePredictions'
 
-import { getEuroMillionResults } from '@/services/EuroMillion'
+import { getEuroMillionResults } from '@/shared/services/EuroMillion'
 import HomeView from './HomeView'
 import { previousPredictionAction } from './previousPredictionAction'
 
